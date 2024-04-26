@@ -15,14 +15,17 @@ import { Button, Modal, Menu, Drawer } from "antd";
 
 import Sidebar from "./sidebar";
 import menuIcon from "../Images/menuIcon.png";
+import menuCloseIcon from "../Images/menuCloseIcon.png";
 import "./index.css";
+
+import { MenuOutlined } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 
 function Map() {
   const [zoomLevel, setZoomLevel] = useState(15);
   const [markerPosition, setMarkerPosition] = useState([23.825292, 90.620816]);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   let mapOptions = {
     zoom: 15,
@@ -32,10 +35,13 @@ function Map() {
   let initialZoom = 15;
 
   const handleSidebar = () => {
-    console.log("sidebar value is "+sidebarOpen )
+    console.log("sidebar value is " + sidebarOpen);
     setSidebarOpen(!sidebarOpen);
   };
 
+  const onClose = () => {
+    setSidebarOpen(false);
+  };
 
   return (
     <>
@@ -71,58 +77,47 @@ function Map() {
 
         <ZoomControl position="bottomright" />
 
-        {/* <Button
+        <Button
           type="primary"
-          size={"small"}
+          size="small"
           onClick={handleSidebar}
+          icon={sidebarOpen === false ? <img src={menuIcon} alt="Icon" />:<img src={menuCloseIcon} alt="Icon" />} // Replace "path_to_your_image.jpg" with the path to your image file
           style={{
-            zIndex: 1000,
-            width: "2.3rem",
-            height: "2.3rem",
+            zIndex: 999,
+            width: "2rem",
+            height: "2rem",
             backgroundColor: "white",
             position: "absolute",
             marginTop: "92vh",
             marginLeft: "1%",
           }}
-        /> */}
-
-
-        <Button type="primary"
-        onClick={console.log("button clicked")}
-        style={{
-          zIndex: 1000,
-          width: "2.3rem",
-          height: "2.3rem",
-          backgroundColor: "black",
-          position: "absolute",
-          marginTop: "92vh",
-          marginLeft: "50%",
-          }}
-        >primary</Button>
-
- 
-          {/* <Sidebar /> */}
-
-          {/* <Menu mode="inline">
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-            <SubMenu key="sub1" title="Submenu">
-              <Menu.Item key="3">Submenu 1</Menu.Item>
-              <Menu.Item key="4">Submenu 2</Menu.Item>
-            </SubMenu>
-          </Menu> */}
-
-        {sidebarOpen && (
-          <Drawer
+        />
+        {/* <Drawer
             // onClose={handleSidebarCancel}
-            open={true}
+            open={sidebarOpen}
             className="custom-drawer"
             placement="left"
-            style={{ transition: "none", width: "80%", height: "75%", marginLeft: "5%", marginTop: "5%", borderRadius: "5px" }}
+            style={{ transition: "none", width: "100%", height: "75%", marginLeft: "5%", marginTop: "5%", borderRadius: "5px" }}
           >
             <Sidebar />
-          </Drawer>
-        )}
+          </Drawer> */}
+
+        <Drawer
+          title="Basic Drawer"
+          placement="left"
+          onClose={onClose}
+          open={sidebarOpen}
+          style={{
+            transition: "none",
+            width: "100%",
+            height: "85%",
+            marginLeft: "5%",
+            marginTop: "5%",
+            borderRadius: "5px",
+          }}
+        >
+          <Sidebar />
+        </Drawer>
       </MapContainer>
     </>
   );
