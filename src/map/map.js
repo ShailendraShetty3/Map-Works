@@ -81,7 +81,7 @@ function Map() {
           type="primary"
           size="small"
           onClick={handleSidebar}
-          icon={sidebarOpen === false ? <img src={menuIcon} alt="Icon" />:<img src={menuCloseIcon} alt="Icon" />} // Replace "path_to_your_image.jpg" with the path to your image file
+          icon={sidebarOpen === false ? <img src={menuIcon} alt="Icon" />:<img src={menuCloseIcon} alt="Icon" />}
           style={{
             zIndex: 999,
             width: "2rem",
@@ -92,15 +92,6 @@ function Map() {
             marginLeft: "1%",
           }}
         />
-        {/* <Drawer
-            // onClose={handleSidebarCancel}
-            open={sidebarOpen}
-            className="custom-drawer"
-            placement="left"
-            style={{ transition: "none", width: "100%", height: "75%", marginLeft: "5%", marginTop: "5%", borderRadius: "5px" }}
-          >
-            <Sidebar />
-          </Drawer> */}
 
         <Drawer
           title="Basic Drawer"
