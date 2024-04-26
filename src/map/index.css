@@ -1,0 +1,7 @@
+.ant-drawer .ant-drawer-mask {
+    background: none; /* Override background */
+}
+
+.ant-drawer .ant-drawer-header {
+    display: none; 
+}

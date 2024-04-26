@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const CheckboxGroup = Checkbox.Group;
 
-const plainOptions = ["Sewage Network", "Manhole", "Infrastructure"];
+const plainOptions = ["Manhole", "Sewage Network", "Infrastructure"];
 
 function Sidebar() {
   const [checkedList, setCheckedList] = useState();
@@ -36,8 +36,12 @@ function Sidebar() {
     setCheckAll(e.target.checked);
   };
 
+  useEffect(() => {
+    console.log(checkedList)
+  },[checkedList])
+
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", color:"black" }}>
       <div>
       <Checkbox
         indeterminate={indeterminate}
