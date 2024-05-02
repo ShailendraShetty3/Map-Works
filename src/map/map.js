@@ -20,16 +20,18 @@ import "./index.css";
 
 import { MenuOutlined } from "@ant-design/icons";
 
+import { building } from '../Geojson-Data/building'
+
 const { SubMenu } = Menu;
 
 function Map() {
   const [zoomLevel, setZoomLevel] = useState(15);
-  const [markerPosition, setMarkerPosition] = useState([23.825292, 90.620816]);
+  const [markerPosition, setMarkerPosition] = useState([19.129098735949114, 73.09997004514011]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   let mapOptions = {
     zoom: 15,
-    center: [23.823049134162396, 90.62156238224219],
+    center: [73.09997004514011, 19.129098735949114]
   };
 
   let initialZoom = 15;
