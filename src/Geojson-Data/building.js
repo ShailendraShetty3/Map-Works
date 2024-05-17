@@ -2042,4 +2042,4 @@ const building = [
       }
 ]
 
-export default building
+export default building;

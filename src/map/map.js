@@ -7,6 +7,8 @@ import {
   useMap,
   LayersControl,
   Polyline,
+  Polygon,
+  GeoJSON,
   ZoomControl,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -20,7 +22,8 @@ import "./index.css";
 
 import { MenuOutlined } from "@ant-design/icons";
 
-import { building } from '../Geojson-Data/building'
+import building from '../Geojson-Data/building'
+import boundary from '../Geojson-Data/boundary'
 
 const { SubMenu } = Menu;
 
@@ -64,7 +67,7 @@ function Map() {
       >
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="General Map">
-            <TileLayer url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}" />
+            <TileLayer url="https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}" />
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer checked name="Hybrid Map">
             <TileLayer url="http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga" />
@@ -73,7 +76,7 @@ function Map() {
             <TileLayer url="https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png" />
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer checked name="Satelite Map">
-            <TileLayer url="https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}" />
+            <TileLayer url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}" />
           </LayersControl.BaseLayer>
         </LayersControl>
 
@@ -111,6 +114,19 @@ function Map() {
         >
           <Sidebar />
         </Drawer>
+
+
+
+        <GeoJSON data={building}
+        style={{color:"yellow", fillColor:"blue", fillOpacity:1, weight:2}}
+         />
+
+        <GeoJSON data={boundary}
+        style={{color:"yellow", fillColor:"black", fillOpacity:.3, weight:2}}
+         />
+
+
+
       </MapContainer>
     </>
   );
