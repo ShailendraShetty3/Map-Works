@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './reducer';
+import checkboxReducer from './reducer';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    checkbox: checkboxReducer,
   },
 });
+
+
+

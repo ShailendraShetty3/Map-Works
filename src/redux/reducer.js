@@ -1,25 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const counterSlice = createSlice({
-  name: 'counter',
-  initialState: {
-    value: 0,
-  },
+const initialState = {
+  checkedListSewage: [],
+  checkedListStorm: [],
+  checkedListBuilding: [],
+};
+
+const checkboxSlice = createSlice({
+  name: 'checkbox',
+  initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    setCheckedListSewage: (state, action) => {
+      state.checkedListSewage = action.payload;
     },
-    decrement: (state) => {
-      state.value -= 1;
+    setCheckedListStorm: (state, action) => {
+      state.checkedListStorm = action.payload;
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    setCheckedListBuilding: (state, action) => {
+      state.checkedListBuilding = action.payload;
     },
   },
 });
 
-// Export actions
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const {
+  setCheckedListSewage,
+  setCheckedListStorm,
+  setCheckedListBuilding,
+} = checkboxSlice.actions;
 
-// Export reducer
-export default counterSlice.reducer;
+export default checkboxSlice.reducer;

@@ -19,6 +19,7 @@ import Sidebar from "./sidebar";
 import menuIcon from "../Images/menuIcon.png";
 import menuCloseIcon from "../Images/menuCloseIcon.png";
 import "./index.css";
+import { useSelector, useDispatch } from 'react-redux';
 
 import { MenuOutlined } from "@ant-design/icons";
 
@@ -29,6 +30,9 @@ import road from '../Geojson-Data/road'
 const { SubMenu } = Menu;
 
 function Map() {
+  const checkedListBuilding = useSelector((state) => state.checkbox.checkedListBuilding);
+
+
   const [zoomLevel, setZoomLevel] = useState(15);
   const [markerPosition, setMarkerPosition] = useState([19.129098735949114, 73.09997004514011]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
