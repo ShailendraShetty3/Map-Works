@@ -24,6 +24,7 @@ import { MenuOutlined } from "@ant-design/icons";
 
 import building from '../Geojson-Data/building'
 import boundary from '../Geojson-Data/boundary'
+import road from '../Geojson-Data/road'
 
 const { SubMenu } = Menu;
 
@@ -122,8 +123,12 @@ function Map() {
          />
 
         <GeoJSON data={boundary}
-        style={{color:"yellow", fillColor:"black", fillOpacity:.3, weight:2}}
-         />
+        style={{color:"green", fillColor:"black", fillOpacity:.3, weight:2}}
+        />
+        
+        {road[0].features.map((feature, index) => (
+          <Polyline key={index} positions={feature.geometry.coordinates.map(coord => [coord[1], coord[0]])} color="blue" />
+        ))}
 
 
 

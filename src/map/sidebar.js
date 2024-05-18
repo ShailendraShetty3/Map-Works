@@ -1,17 +1,11 @@
 import React, { useState, createContext, useEffect } from "react";
 import {
-  Marker,
-  Drawer,
-  Button,
-  Radio,
-  Space,
-  Tooltip,
-  Modal,
   Checkbox,
 } from "antd";
 
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const CheckboxGroup = Checkbox.Group;
 
