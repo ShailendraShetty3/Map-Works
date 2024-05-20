@@ -1,25 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const counterSlice = createSlice({
-  name: 'counter',
+// Define the slice
+export const sewageSlice = createSlice({
+  name: 'sewageLayer',
   initialState: {
-    value: 0,
+    sewageValue: [],  // Use consistent naming convention for state properties
   },
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    updateSewageValue: (state, action) => {
+      state.sewageValue = action.payload; // Correct property reference
     },
   },
 });
 
 // Export actions
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { updateSewageValue } = sewageSlice.actions;
 
 // Export reducer
-export default counterSlice.reducer;
+export default sewageSlice.reducer;
+

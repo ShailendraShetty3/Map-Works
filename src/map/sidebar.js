@@ -5,6 +5,7 @@ import {
 
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
+import { updateSewageValue } from '../redux/reducer';
 
 
 const CheckboxGroup = Checkbox.Group;
@@ -14,6 +15,7 @@ const stormOptions = ["Storm Water Drain", "Storm Water Drainage"];
 const buildingOptions = ["Building Footprint", "Road", "Boundary"];
 
 function Sidebar() {
+  const dispatch = useDispatch();
   //sewage
   const [checkedListSewage, setCheckedListSewage] = useState();
   const [indeterminateSewage, setIndeterminateSewage] = useState(false);
@@ -50,6 +52,8 @@ function Sidebar() {
         checkedListSewage.length < sewageOptions.length
     );
     setCheckAllSewage(checkedListSewage.length === sewageOptions.length);
+
+    dispatch(updateSewageValue(checkedListSewage))
   };
 
   // const onCheckAllSewage = (e) => {

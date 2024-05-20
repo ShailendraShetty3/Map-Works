@@ -19,6 +19,7 @@ import Sidebar from "./sidebar";
 import menuIcon from "../Images/menuIcon.png";
 import menuCloseIcon from "../Images/menuCloseIcon.png";
 import "./index.css";
+import { useSelector, useDispatch } from 'react-redux';
 
 import { MenuOutlined } from "@ant-design/icons";
 
@@ -29,6 +30,10 @@ import road from '../Geojson-Data/road'
 const { SubMenu } = Menu;
 
 function Map() {
+  const sewage = useSelector((state) => state.sewageLayer.sewageValue);
+
+  
+  ///
   const [zoomLevel, setZoomLevel] = useState(15);
   const [markerPosition, setMarkerPosition] = useState([19.129098735949114, 73.09997004514011]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -43,11 +48,16 @@ function Map() {
   const handleSidebar = () => {
     console.log("sidebar value is " + sidebarOpen);
     setSidebarOpen(!sidebarOpen);
+
   };
 
   const onClose = () => {
     setSidebarOpen(false);
   };
+
+  useEffect(() => {
+    console.log("value of sidebar in map " + sewage);
+  },[sewage])
 
   return (
     <>
@@ -118,9 +128,12 @@ function Map() {
 
 
 
-        <GeoJSON data={building}
-        style={{color:"yellow", fillColor:"blue", fillOpacity:1, weight:2}}
-         />
+        {sewage.includes('Manhole') ? (
+        <GeoJSON
+          data={building}
+          style={{ color: "yellow", fillColor: "blue", fillOpacity: 1, weight: 2 }}
+        />
+      ) : null}
 
         <GeoJSON data={boundary}
         style={{color:"green", fillColor:"black", fillOpacity:.3, weight:2}}
