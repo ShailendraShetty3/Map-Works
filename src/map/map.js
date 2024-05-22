@@ -2,45 +2,51 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
-  Marker,
-  Popup,
-  useMap,
   LayersControl,
   Polyline,
   Polygon,
   GeoJSON,
   ZoomControl,
+  Marker,
+  Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import ReactDOMServer from "react-dom/server";
 import { Button, Modal, Menu, Drawer } from "antd";
 
 import Sidebar from "./sidebar";
 import menuIcon from "../Images/menuIcon.png";
 import menuCloseIcon from "../Images/menuCloseIcon.png";
 import "./index.css";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
-import { MenuOutlined } from "@ant-design/icons";
+import building from "../Geojson-Data/building";
+import boundary from "../Geojson-Data/boundary";
+import road from "../Geojson-Data/road";
 
-import building from '../Geojson-Data/building'
-import boundary from '../Geojson-Data/boundary'
-import road from '../Geojson-Data/road'
+import storm_water_line from "../Geojson-Data/stormwaterLine";
+import storm_drain from "../Geojson-Data/stormwaterDrain";
+
+import manhole from "../Geojson-Data/manHole";
+import sewageLine from "../Geojson-Data/sewageLine";
+import sewage_chamber from "../Geojson-Data/sewageChamber";
+
+import { customIcon, manholeIcon, stormDrainIcon } from "./icons";
 
 const { SubMenu } = Menu;
 
 function Map() {
-  const sewage = useSelector((state) => state.sewageLayer.sewageValue);
+  const sewage = useSelector((state) => state.checkbox.CheckboxValue);
 
-  
   ///
   const [zoomLevel, setZoomLevel] = useState(15);
-  const [markerPosition, setMarkerPosition] = useState([19.129098735949114, 73.09997004514011]);
+  const [markerPosition, setMarkerPosition] = useState([
+    19.129098735949114, 73.09997004514011,
+  ]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   let mapOptions = {
     zoom: 15,
-    center: [73.09997004514011, 19.129098735949114]
+    center: [73.09997004514011, 19.129098735949114],
   };
 
   let initialZoom = 15;
@@ -48,7 +54,6 @@ function Map() {
   const handleSidebar = () => {
     console.log("sidebar value is " + sidebarOpen);
     setSidebarOpen(!sidebarOpen);
-
   };
 
   const onClose = () => {
@@ -57,7 +62,7 @@ function Map() {
 
   useEffect(() => {
     console.log("value of sidebar in map " + sewage);
-  },[sewage])
+  }, [sewage]);
 
   return (
     <>
@@ -97,7 +102,13 @@ function Map() {
           type="primary"
           size="small"
           onClick={handleSidebar}
-          icon={sidebarOpen === false ? <img src={menuIcon} alt="Icon" />:<img src={menuCloseIcon} alt="Icon" />}
+          icon={
+            sidebarOpen === false ? (
+              <img src={menuIcon} alt="Icon" />
+            ) : (
+              <img src={menuCloseIcon} alt="Icon" />
+            )
+          }
           style={{
             zIndex: 999,
             width: "2rem",
@@ -126,25 +137,126 @@ function Map() {
           <Sidebar />
         </Drawer>
 
+        {sewage.includes("Manhole")
+          ? manhole[0].features.map((feature, index) => (
+              <Marker
+                key={index}
+                position={[
+                  feature.geometry.coordinates[1],
+                  feature.geometry.coordinates[0],
+                ]}
+                icon={manholeIcon}
+              >
+                <Popup>
+                  <p>data</p>
+                </Popup>
+              </Marker>
+            ))
+          : null}
 
+        {sewage.includes("Sewage Chamber")
+          ? sewage_chamber[0].features.map((feature, index) => (
+              <Marker
+                key={index}
+                position={[
+                  feature.geometry.coordinates[1],
+                  feature.geometry.coordinates[0],
+                ]}
+                icon={customIcon}
+              >
+                <Popup>
+                  <p>data</p>
+                </Popup>
+              </Marker>
+            ))
+          : null}
 
-        {sewage.includes('Manhole') ? (
-        <GeoJSON
-          data={building}
-          style={{ color: "yellow", fillColor: "blue", fillOpacity: 1, weight: 2 }}
-        />
-      ) : null}
-
-        <GeoJSON data={boundary}
-        style={{color:"green", fillColor:"black", fillOpacity:.3, weight:2}}
-        />
+        {sewage.includes("Sewage Line")
+          ? sewageLine.features.map((feature, index) => (
+              <Polyline
+                key={index}
+                positions={feature.geometry.coordinates.map((coord) => [
+                  coord[1],
+                  coord[0],
+                ])}
+                color="red"
+              />
+            ))
+          : null}
         
-        {road[0].features.map((feature, index) => (
-          <Polyline key={index} positions={feature.geometry.coordinates.map(coord => [coord[1], coord[0]])} color="blue" />
-        ))}
+        
+
+        {
+          sewage.includes("Storm Water Drainage")
+          ? storm_water_line.features.map((feature, index) => (
+              <Polyline
+                key={index}
+                positions={feature.geometry.coordinates.map((coord) => [
+                  coord[1],
+                  coord[0],
+                ])}
+                color="blue"
+              />
+            ))
+          : null}
+        
 
 
+        {sewage.includes("Storm Water Drain")
+          ? storm_drain[0].features.map((feature, index) => (
+              <Marker
+                key={index}
+                position={[
+                  feature.geometry.coordinates[1],
+                  feature.geometry.coordinates[0],
+                ]}
+                icon={stormDrainIcon}
+              >
+                <Popup>
+                  <p>data</p>
+                </Popup>
+              </Marker>
+            ))
+          : null}
+        
 
+
+        {sewage.includes("Building Footprint") ? (
+          <GeoJSON
+            data={building}
+            style={{
+              color: "yellow",
+              fillColor: "blue",
+              fillOpacity: 1,
+              weight: 2,
+            }}
+          />
+        ) : null}
+
+        {sewage.includes("Boundary") ? (
+          <GeoJSON
+            data={boundary}
+            style={{
+              color: "green",
+              fillColor: "black",
+              fillOpacity: 0.3,
+              weight: 2,
+            }}
+          />
+        ) : null}
+
+        {sewage.includes("Road")
+          ? road[0].features.map((feature, index) => (
+              <Polyline
+                key={index}
+                positions={feature.geometry.coordinates.map((coord) => [
+                  coord[1],
+                  coord[0],
+                ])}
+                color="blue"
+              />
+            ))
+          : null}
       </MapContainer>
     </>
   );

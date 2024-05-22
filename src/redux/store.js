@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sewageReducer from './reducer';
+import checkboxReducer from './reducer';
 
 const store = configureStore({
   reducer: {
-    sewageLayer: sewageReducer,
+    checkbox: checkboxReducer,
   },
 });
 

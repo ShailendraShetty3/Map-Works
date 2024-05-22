@@ -5,7 +5,7 @@ import {
 
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { updateSewageValue } from '../redux/reducer';
+import { updateCheckedValue } from '../redux/reducer';
 
 
 const CheckboxGroup = Checkbox.Group;
@@ -17,19 +17,28 @@ const buildingOptions = ["Building Footprint", "Road", "Boundary"];
 function Sidebar() {
   const dispatch = useDispatch();
   //sewage
-  const [checkedListSewage, setCheckedListSewage] = useState();
+  const [checkedListSewage, setCheckedListSewage] = useState([]);
   const [indeterminateSewage, setIndeterminateSewage] = useState(false);
   const [checkAllSewage, setCheckAllSewage] = useState(false);
 
   //storm water
-  const [checkedListStorm, setCheckedListStorm] = useState();
+  const [checkedListStorm, setCheckedListStorm] = useState([]);
   const [indeterminateStorm, setIndeterminateStorm] = useState(false);
   const [checkAllStorm, setCheckAllStorm] = useState(false);
 
   //storm water
-    const [checkedListBuilding, setCheckedListBuilding] = useState();
+    const [checkedListBuilding, setCheckedListBuilding] = useState([]);
     const [indeterminateBuilding, setIndeterminateBuilding] = useState(false);
   const [checkAllBuilding, setCheckAllBuilding] = useState(false);
+
+
+
+  useEffect(() => {
+    const mergedList = [...checkedListSewage, ...checkedListStorm, ...checkedListBuilding];
+
+    dispatch(updateCheckedValue(mergedList));
+  }, [checkedListSewage, checkedListStorm, checkedListBuilding, dispatch]);
+
   
 
   const handleCheckAll = (
@@ -40,9 +49,17 @@ function Sidebar() {
     options
   ) => {
     const checkedList = e.target.checked ? options : [];
+    // const isChecked = e.target.checked;
+    // const checkedList = isChecked ? options : [];
+
     setCheckedList(checkedList);
     setIndeterminate(false);
     setCheckAll(e.target.checked);
+    // isChecked?(
+    //   dispatch(updateSewageValue(options))
+    //  ):(
+    //   dispatch(updateSewageValue([]))
+    // )
   };
 
   const onChangeSewage = (checkedListSewage) => {
@@ -53,14 +70,14 @@ function Sidebar() {
     );
     setCheckAllSewage(checkedListSewage.length === sewageOptions.length);
 
-    dispatch(updateSewageValue(checkedListSewage))
+    // dispatch(updateSewageValue(checkedListSewage))
   };
 
-  // const onCheckAllSewage = (e) => {
-  //   setCheckedListSewage(e.target.checked ? sewageOptions : []);
-  //   setIndeterminateSewage(false);
-  //   setCheckAllSewage(e.target.checked);
-  // };
+  const onCheckAllSewage = (e) => {
+    setCheckedListSewage(e.target.checked ? sewageOptions : []);
+    setIndeterminateSewage(false);
+    setCheckAllSewage(e.target.checked);
+  };
 
   const onChangeStorm = (checkedListStorm) => {
     setCheckedListStorm(checkedListStorm);
@@ -70,11 +87,11 @@ function Sidebar() {
     setCheckAllStorm(checkedListStorm.length === stormOptions.length);
   };
 
-  // const onCheckAllStorm = (e) => {
-  //   setCheckedListStorm(e.target.checked ? stormOptions : []);
-  //   setIndeterminateStorm(false);
-  //   setCheckAllStorm(e.target.checked);
-  // };
+  const onCheckAllStorm = (e) => {
+    setCheckedListStorm(e.target.checked ? stormOptions : []);
+    setIndeterminateStorm(false);
+    setCheckAllStorm(e.target.checked);
+  };
 
   const onChangeBuilding = (checkedListBuilding) => {
     setCheckedListBuilding(checkedListBuilding);

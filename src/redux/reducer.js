@@ -2,20 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Define the slice
 export const sewageSlice = createSlice({
-  name: 'sewageLayer',
+  name: 'Checkbox',
   initialState: {
-    sewageValue: [],  // Use consistent naming convention for state properties
+    CheckboxValue: [],  // Use consistent naming convention for state properties
   },
   reducers: {
-    updateSewageValue: (state, action) => {
-      state.sewageValue = action.payload; // Correct property reference
+    updateCheckedValue: (state, action) => {
+      state.CheckboxValue = action.payload; // Correct property reference
     },
   },
 });
 
 // Export actions
-export const { updateSewageValue } = sewageSlice.actions;
+export const { updateCheckedValue } = sewageSlice.actions;
 
 // Export reducer
 export default sewageSlice.reducer;
-
