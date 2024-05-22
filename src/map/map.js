@@ -225,9 +225,9 @@ function Map() {
           <GeoJSON
             data={building}
             style={{
-              color: "yellow",
-              fillColor: "blue",
-              fillOpacity: 1,
+              color: "black",
+              fillColor: "yellow",
+              fillOpacity: .6,
               weight: 2,
             }}
           />
@@ -239,7 +239,7 @@ function Map() {
             style={{
               color: "green",
               fillColor: "black",
-              fillOpacity: 0.3,
+              fillOpacity: 0,
               weight: 2,
             }}
           />
