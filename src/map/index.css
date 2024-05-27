@@ -5,3 +5,7 @@
 .ant-drawer .ant-drawer-header {
     display: none; 
 }
+
+.checkbox_margin{
+    margin-left: 1rem;
+}

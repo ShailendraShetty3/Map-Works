@@ -2,6 +2,7 @@ import React, { useState, createContext, useEffect } from "react";
 import {
   Checkbox,
 } from "antd";
+import "./index.css";
 
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
@@ -107,7 +108,7 @@ function Sidebar() {
 
   return (
     <div style={{ width: "100%", color: "black" }}>
-      <div>
+      <div className="checkbox_margin">
         <Checkbox
           indeterminate={indeterminateSewage}
           onChange={(e) => {
@@ -135,7 +136,7 @@ function Sidebar() {
           }}
         />
       </div>
-      <div>
+      <div className="checkbox_margin">
         <Checkbox
           indeterminate={indeterminateStorm}
           onChange={(e) => {
@@ -163,7 +164,7 @@ function Sidebar() {
           }}
         />
       </div>
-      <div>
+      <div className="checkbox_margin">
         <Checkbox
           indeterminate={indeterminateBuilding}
           onChange={(e) => {
