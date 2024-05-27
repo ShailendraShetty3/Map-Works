@@ -23,8 +23,8 @@ import boundary from "../Geojson-Data/boundary";
 import road from "../Geojson-Data/road.json";
 import park from "../Geojson-Data/parks.json";
 
-import storm_water_line from "../Geojson-Data/stormwaterLine";
-import storm_drain from "../Geojson-Data/stormwaterDrain";
+import storm_water_line from "../Geojson-Data/stormwaterLine.json";
+import storm_drain from "../Geojson-Data/stormwaterDrain.json";
 
 import manhole from "../Geojson-Data/manHole.json";
 import sewageLine from "../Geojson-Data/sewageLine.json";
@@ -211,7 +211,7 @@ function Map() {
         : null}
 
       {checkbox.includes("Storm Water Drain")
-        ? storm_drain[0].features.map((feature, index) => (
+        ? storm_drain.features.map((feature, index) => (
             <Marker
               key={index}
               position={[
