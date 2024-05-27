@@ -40,7 +40,7 @@ function Map() {
   ///
   const [zoomLevel, setZoomLevel] = useState(15);
   const [markerPosition, setMarkerPosition] = useState([
-    19.129098735949114, 73.09997004514011,
+    19.048980241105, 72.82506531582413,
   ]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
