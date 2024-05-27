@@ -108,7 +108,7 @@ function Sidebar() {
 
   return (
     <div style={{ width: "100%", color: "black" }}>
-      <div className="checkbox_margin">
+      <div className="checkbox_margin" style={{marginTop:"1rem"}}>
         <Checkbox
           indeterminate={indeterminateSewage}
           onChange={(e) => {
@@ -124,6 +124,7 @@ function Sidebar() {
         >
           Sewage Layer
         </Checkbox>
+        
 
         <CheckboxGroup
           options={sewageOptions}
@@ -133,10 +134,11 @@ function Sidebar() {
             display: "flex",
             flexDirection: "column",
             marginLeft: "30px",
+            marginTop:".7rem"
           }}
         />
       </div>
-      <div className="checkbox_margin">
+      <div className="checkbox_margin" style={{marginTop:"1rem"}}>
         <Checkbox
           indeterminate={indeterminateStorm}
           onChange={(e) => {
@@ -161,10 +163,11 @@ function Sidebar() {
             display: "flex",
             flexDirection: "column",
             marginLeft: "30px",
+            marginTop:".7rem"
           }}
         />
       </div>
-      <div className="checkbox_margin">
+      <div className="checkbox_margin" style={{marginTop:"1rem"}}>
         <Checkbox
           indeterminate={indeterminateBuilding}
           onChange={(e) => {
@@ -189,6 +192,7 @@ function Sidebar() {
             display: "flex",
             flexDirection: "column",
             marginLeft: "30px",
+            marginTop:".7rem"
           }}
         />
       </div>

@@ -257,7 +257,7 @@ function Map() {
       center={markerPosition}
       zoom={15}
       // zoom={zoomLevel}
-      maxZoom={20}
+      // maxZoom={20}
       style={{
         width: "100%",
         height: "100%",
@@ -390,7 +390,7 @@ function Map() {
                 coord[1],
                 coord[0],
               ])}
-              color="blue"
+              color="black"
             />
           ))
         : null}
