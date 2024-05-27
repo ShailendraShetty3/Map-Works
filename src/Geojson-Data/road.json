@@ -1,10 +1,12 @@
-const road = [
-  {
+
+{
     "type": "FeatureCollection",
     "features": [
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Kadeshwari Mandir Marg"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -133,7 +135,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 0
       },
       {
         "type": "Feature",
@@ -178,7 +181,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "CN Marg Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -259,7 +264,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 2
       },
       {
         "type": "Feature",
@@ -400,7 +406,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name ": "Norm Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -465,7 +473,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 8
       },
       {
         "type": "Feature",
@@ -568,7 +577,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "HK Baba Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -609,7 +620,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 12
       },
       {
         "type": "Feature",
@@ -709,7 +721,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Mount Mary Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -758,11 +772,14 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 17
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Kane Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -787,7 +804,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 18
       },
       {
         "type": "Feature",
@@ -832,7 +850,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Byrami Jeeji Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -881,7 +901,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 20
       },
       {
         "type": "Feature",
@@ -964,7 +985,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Bullock Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1005,11 +1028,14 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 24
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Bullock Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1042,11 +1068,14 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 25
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Bullock Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1075,7 +1104,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 26
       },
       {
         "type": "Feature",
@@ -1112,7 +1142,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Mount Mary Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1157,7 +1189,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 28
       },
       {
         "type": "Feature",
@@ -1371,7 +1404,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "Baptist Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1392,11 +1427,14 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 39
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "CK Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1445,7 +1483,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 40
       },
       {
         "type": "Feature",
@@ -1470,7 +1509,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name ": "Cart Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1587,7 +1628,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 42
       },
       {
         "type": "Feature",
@@ -1743,7 +1785,9 @@ const road = [
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "name": "ST John Road"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1780,7 +1824,8 @@ const road = [
             ]
           ],
           "type": "LineString"
-        }
+        },
+        "id": 47
       },
       {
         "type": "Feature",
@@ -2080,6 +2125,5 @@ const road = [
       }
     ]
   }
-];
 
-export default road;
+

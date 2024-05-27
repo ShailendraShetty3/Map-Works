@@ -13,7 +13,7 @@ const CheckboxGroup = Checkbox.Group;
 
 const sewageOptions = ["Manhole", "Sewage Chamber", "Sewage Line"];
 const stormOptions = ["Storm Water Drain", "Storm Water Drainage"];
-const buildingOptions = ["Building Footprint", "Road", "Boundary"];
+const buildingOptions = ["Building Footprint", "Road", "Boundary", "Parks"];
 
 function Sidebar() {
   const dispatch = useDispatch();
