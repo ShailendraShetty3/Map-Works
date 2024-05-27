@@ -27,7 +27,7 @@ import storm_water_line from "../Geojson-Data/stormwaterLine";
 import storm_drain from "../Geojson-Data/stormwaterDrain";
 
 import manhole from "../Geojson-Data/manHole.json";
-import sewageLine from "../Geojson-Data/sewageLine";
+import sewageLine from "../Geojson-Data/sewageLine.json";
 import sewage_chamber from "../Geojson-Data/sewageChamber.json";
 
 import { customIcon, manholeIcon, stormDrainIcon } from "./icons";
@@ -171,7 +171,7 @@ function Map() {
       
 
       {checkbox.includes("Sewage Line")
-        ? sewageLine[0].features.map((feature, index) => (
+        ? sewageLine.features.map((feature, index) => (
             <Polyline
               key={index}
               positions={feature.geometry.coordinates.map((coord) => [
