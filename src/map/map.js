@@ -11,9 +11,23 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { Menu, Drawer, Button } from "antd";
+import { Menu, Drawer, Button, Modal, Input, message } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
+//tailwind.css
+import { Fragment } from 'react'
+import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react'
+import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import {
+  ArrowPathIcon,
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
+  SquaresPlusIcon,
+} from '@heroicons/react/24/outline'
+
+
 
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -33,6 +47,22 @@ import sewage_chamber from "../Geojson-Data/sewageChamber.json";
 import { customIcon, manholeIcon, stormDrainIcon } from "./icons";
 
 const { SubMenu } = Menu;
+
+
+
+const solutions = [
+  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
+  { name: 'Security', description: "Your customers' data will be safe and secure", href: '#', icon: FingerPrintIcon },
+  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
+  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+]
+const callsToAction = [
+  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
+  { name: 'Contact sales', href: '#', icon: PhoneIcon },
+]
+
+
 
 function Map() {
   const checkbox = useSelector((state) => state.checkbox.CheckboxValue);
@@ -70,6 +100,23 @@ function Map() {
   const onClose = () => {
     setSidebarOpen(false);
   };
+
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const handleEdit = () => {
+    setIsPopoverOpen((prev) => !prev);
+  }
+
+  const handleCancel = () => {
+    setIsPopoverOpen(false);
+  };
+
+  const handleSubmit = () => {
+    message.warning("working on this functionality")
+  }
+
+  
+  
+
 
   useEffect(() => {}, [checkbox]);
 
@@ -119,6 +166,7 @@ function Map() {
           boxShadow: "50px black",
           padding: 0,
         }}
+        onClick={handleEdit}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -130,6 +178,20 @@ function Map() {
           <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z" />
         </svg>
       </Button>
+
+      <Modal title="Data Edit Window" open={isPopoverOpen}
+        footer={null}
+        onCancel={handleCancel}
+      >
+
+        <Input placeholder="Latitude" style={{width:"90%", height:"2.5rem", margin:"1rem"}} />
+        <Input placeholder="Longitude" style={{ width: "90%", height: "2.5rem", margin: "1rem" }} />
+        <Button type="primary" size="large" style={{left:"40%"}} onClick={handleSubmit}>
+            Submit
+          </Button>
+
+      </Modal>
+
 
       <ZoomControl position="bottomright" />
 
