@@ -14,6 +14,7 @@ const CheckboxGroup = Checkbox.Group;
 const sewageOptions = ["Manhole", "Sewage Chamber", "Sewage Line"];
 const stormOptions = ["Storm Water Drain", "Storm Water Drainage"];
 const buildingOptions = ["Building Footprint", "Road", "Boundary", "Parks"];
+const environmentOptions = ["Wind"];
 
 function Sidebar() {
   const dispatch = useDispatch();
@@ -32,10 +33,15 @@ function Sidebar() {
     const [indeterminateBuilding, setIndeterminateBuilding] = useState(false);
   const [checkAllBuilding, setCheckAllBuilding] = useState(false);
 
+  //env
+  const [checkedListEnvironment, setCheckedListEnvironment] = useState([]);
+  const [indeterminateEnvironment, setIndeterminateEnvironment] = useState(false);
+  const [checkAllEnvironment, setCheckAllEnvironment] = useState(false);
+
 
 
   useEffect(() => {
-    const mergedList = [...checkedListSewage, ...checkedListStorm, ...checkedListBuilding];
+    const mergedList = [...checkedListSewage, ...checkedListStorm, ...checkedListBuilding, ...checkedListEnvironment];
 
     dispatch(updateCheckedValue(mergedList));
   }, [checkedListSewage, checkedListStorm, checkedListBuilding, dispatch]);
@@ -101,6 +107,21 @@ function Sidebar() {
     );
     setCheckAllBuilding(checkedListBuilding.length === buildingOptions.length);
   };
+
+  const onChangeEnvironment = (checkedListEnvironment) => {
+    setCheckedListEnvironment(checkedListEnvironment);
+    setIndeterminateEnvironment(
+      !!checkedListEnvironment.length && checkedListEnvironment.length < environmentOptions.length
+    );
+    setCheckAllEnvironment(checkedListEnvironment.length === environmentOptions.length);
+  };
+
+  const onCheckAllEnvironment = (e) => {
+    setCheckedListEnvironment(e.target.checked ? environmentOptions : []);
+    setIndeterminateEnvironment(false);
+    setCheckAllEnvironment(e.target.checked);
+  };
+
 
   useEffect(() => {
     console.log(checkedListSewage);
@@ -196,6 +217,38 @@ function Sidebar() {
           }}
         />
       </div>
+
+      <div className="checkbox_margin" style={{marginTop:"1rem"}}>
+        <Checkbox
+          indeterminate={indeterminateEnvironment}
+          onChange={(e) => {
+            handleCheckAll(
+              e,
+              setCheckedListEnvironment,
+              setIndeterminateEnvironment,
+              setCheckAllEnvironment,
+              stormOptions
+            );
+          }}
+          checked={checkAllEnvironment}
+        >
+          Environment
+        </Checkbox>
+
+        <CheckboxGroup
+          options={environmentOptions}
+          value={checkedListEnvironment}
+          onChange={onChangeEnvironment}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginLeft: "30px",
+            marginTop:".7rem"
+          }}
+        />
+      </div>
+
+
     </div>
   );
 }

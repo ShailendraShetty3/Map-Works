@@ -4,21 +4,17 @@ import {
   TileLayer,
   LayersControl,
   Polyline,
-  Polygon,
   GeoJSON,
   ZoomControl,
   Marker,
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { Menu, Drawer, Button, Modal, Input, message } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { Menu, Button, Modal, Input, message } from "antd";
+
 
 //tailwind.css
-import { Fragment } from 'react'
-import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import {
   ArrowPathIcon,
   ChartPieIcon,
@@ -29,8 +25,9 @@ import {
 
 
 
+
 import "./index.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import building from "../Geojson-Data/building";
 import boundary from "../Geojson-Data/boundary";
@@ -46,27 +43,13 @@ import sewage_chamber from "../Geojson-Data/sewageChamber.json";
 
 import { customIcon, manholeIcon, stormDrainIcon } from "./icons";
 
-const { SubMenu } = Menu;
-
-
-
-const solutions = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: "Your customers' data will be safe and secure", href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
-]
-const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-]
-
+import VelocityWind from '../animations/leafletVelocity'
 
 
 function Map() {
-  const checkbox = useSelector((state) => state.checkbox.CheckboxValue);
+  const layerControlRef = useRef();
 
+  const checkbox = useSelector((state) => state.checkbox.CheckboxValue);
   ///
   const [zoomLevel, setZoomLevel] = useState(15);
   const [markerPosition, setMarkerPosition] = useState([
@@ -118,7 +101,9 @@ function Map() {
   
 
 
-  useEffect(() => {}, [checkbox]);
+  useEffect(() => {
+
+  }, [checkbox]);
 
   return (
     <MapContainer
@@ -367,7 +352,16 @@ function Map() {
           onEachFeature={onEachFeature}
         />
       ) : null}
+
+      {/* {checkbox.includes("Parks") &&
+      <VelocityWind />
+      } */}
+
+{checkbox.includes("Parks") ? <VelocityWind /> : ""}
+
+      
     </MapContainer>
+    
   );
 }
 

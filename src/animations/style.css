@@ -1,0 +1,8 @@
+.leaflet-control-velocity {
+    background-color: rgba(0, 0, 0, 0.88);
+    padding: 0 5px;
+    margin: 0 !important;
+    color: #fff;
+    font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    /* right:50vh; */
+}
