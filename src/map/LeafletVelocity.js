@@ -38,53 +38,6 @@ const LeafletVelocity = forwardRef((props, ref) => {
       })
       .catch((err) => console.log(err));
 
-    // fetch("https://onaci.github.io/leaflet-velocity/wind-gbr.json")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (!mounted) return;
-
-    //     windGbrLayer = L.velocityLayer({
-    //       displayValues: true,
-    //       displayOptions: {
-    //         velocityType: "GBR Wind",
-    //         position: "bottomleft",
-    //         emptyString: "No wind data",
-    //         showCardinal: true
-    //       },
-    //       data,
-    //       maxVelocity: 10
-    //     });
-
-    //     if (ref.current && windGbrLayer)
-    //       ref.current.addOverlay(windGbrLayer, "Wind - Great Barrier Reef");
-    //   })
-    //   .catch((err) => console.log(err));
-
-    // fetch("https://onaci.github.io/leaflet-velocity/water-gbr.json")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (!mounted) return;
-
-    //     waterGbrLayer = L.velocityLayer({
-    //       displayValues: true,
-    //       displayOptions: {
-    //         velocityType: "GBR Water",
-    //         position: "bottomleft",
-    //         emptyString: "No water data"
-    //       },
-    //       data: data,
-    //       maxVelocity: 0.6,
-    //       velocityScale: 0.1 // arbitrary default 0.005
-    //     });
-
-    //     if (ref.current && waterGbrLayer)
-    //       ref.current.addOverlay(
-    //         waterGbrLayer,
-    //         "Ocean Current - Great Barrier Reef"
-    //       );
-    //   })
-    //   .catch((err) => console.log(err));
-
     return () => {
       mounted = false;
       if (ref.current) {
