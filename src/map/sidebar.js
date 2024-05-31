@@ -35,11 +35,7 @@ function Sidebar() {
       ...checkedListStorm,
       ...checkedListBuilding,
     ];
-    const mergedList = [
-      ...checkedListSewage,
-      ...checkedListStorm,
-      ...checkedListBuilding,
-    ];
+   
 
     dispatch(updateCheckedValue(mergedList));
   }, [checkedListSewage, checkedListStorm, checkedListBuilding, dispatch]);

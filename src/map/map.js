@@ -44,7 +44,7 @@ import sewage_chamber from "../Geojson-Data/sewageChamber.json";
 import { customIcon, manholeIcon, stormDrainIcon } from "./icons";
 
 
-import LeafletVelocity from "../animations/LeafletVelocity";
+import LeafletVelocity from "./LeafletVelocity";
 
 
 function Map() {
