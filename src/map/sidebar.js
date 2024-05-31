@@ -1,13 +1,10 @@
 import React, { useState, createContext, useEffect } from "react";
-import {
-  Checkbox,
-} from "antd";
+import { Checkbox } from "antd";
 import "./index.css";
 
 import axios from "axios";
-import { useSelector, useDispatch } from 'react-redux';
-import { updateCheckedValue } from '../redux/reducer';
-
+import { useSelector, useDispatch } from "react-redux";
+import { updateCheckedValue } from "../redux/reducer";
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -28,21 +25,24 @@ function Sidebar() {
   const [checkAllStorm, setCheckAllStorm] = useState(false);
 
   //storm water
-    const [checkedListBuilding, setCheckedListBuilding] = useState([]);
-    const [indeterminateBuilding, setIndeterminateBuilding] = useState(false);
+  const [checkedListBuilding, setCheckedListBuilding] = useState([]);
+  const [indeterminateBuilding, setIndeterminateBuilding] = useState(false);
   const [checkAllBuilding, setCheckAllBuilding] = useState(false);
 
-
-
-
-
   useEffect(() => {
-    const mergedList = [...checkedListSewage, ...checkedListStorm, ...checkedListBuilding];
+    const mergedList = [
+      ...checkedListSewage,
+      ...checkedListStorm,
+      ...checkedListBuilding,
+    ];
+    const mergedList = [
+      ...checkedListSewage,
+      ...checkedListStorm,
+      ...checkedListBuilding,
+    ];
 
     dispatch(updateCheckedValue(mergedList));
   }, [checkedListSewage, checkedListStorm, checkedListBuilding, dispatch]);
-
-  
 
   const handleCheckAll = (
     e,
@@ -99,12 +99,11 @@ function Sidebar() {
   const onChangeBuilding = (checkedListBuilding) => {
     setCheckedListBuilding(checkedListBuilding);
     setIndeterminateBuilding(
-      !!checkedListBuilding.length && checkedListBuilding.length < buildingOptions.length
+      !!checkedListBuilding.length &&
+        checkedListBuilding.length < buildingOptions.length
     );
     setCheckAllBuilding(checkedListBuilding.length === buildingOptions.length);
   };
-
-
 
   useEffect(() => {
     console.log(checkedListSewage);
@@ -112,7 +111,7 @@ function Sidebar() {
 
   return (
     <div style={{ width: "100%", color: "black" }}>
-      <div className="checkbox_margin" style={{marginTop:"1rem"}}>
+      <div className="checkbox_margin" style={{ marginTop: "1rem" }}>
         <Checkbox
           indeterminate={indeterminateSewage}
           onChange={(e) => {
@@ -128,7 +127,6 @@ function Sidebar() {
         >
           Sewage Layer
         </Checkbox>
-        
 
         <CheckboxGroup
           options={sewageOptions}
@@ -138,11 +136,11 @@ function Sidebar() {
             display: "flex",
             flexDirection: "column",
             marginLeft: "30px",
-            marginTop:".7rem"
+            marginTop: ".7rem",
           }}
         />
       </div>
-      <div className="checkbox_margin" style={{marginTop:"1rem"}}>
+      <div className="checkbox_margin" style={{ marginTop: "1rem" }}>
         <Checkbox
           indeterminate={indeterminateStorm}
           onChange={(e) => {
@@ -167,11 +165,11 @@ function Sidebar() {
             display: "flex",
             flexDirection: "column",
             marginLeft: "30px",
-            marginTop:".7rem"
+            marginTop: ".7rem",
           }}
         />
       </div>
-      <div className="checkbox_margin" style={{marginTop:"1rem"}}>
+      <div className="checkbox_margin" style={{ marginTop: "1rem" }}>
         <Checkbox
           indeterminate={indeterminateBuilding}
           onChange={(e) => {
@@ -196,12 +194,10 @@ function Sidebar() {
             display: "flex",
             flexDirection: "column",
             marginLeft: "30px",
-            marginTop:".7rem"
+            marginTop: ".7rem",
           }}
         />
       </div>
-
-
     </div>
   );
 }
