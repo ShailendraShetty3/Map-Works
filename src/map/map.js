@@ -43,7 +43,8 @@ import sewage_chamber from "../Geojson-Data/sewageChamber.json";
 
 import { customIcon, manholeIcon, stormDrainIcon } from "./icons";
 
-import VelocityWind from '../animations/leafletVelocity'
+
+import LeafletVelocity from "../animations/LeafletVelocity";
 
 
 function Map() {
@@ -118,7 +119,7 @@ function Map() {
       }}
       zoomControl={false}
     >
-      <LayersControl position="topright">
+      <LayersControl position="topright" ref={layerControlRef}>
         <LayersControl.BaseLayer checked name="General Map">
           <TileLayer url="https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}" />
         </LayersControl.BaseLayer>
@@ -132,6 +133,25 @@ function Map() {
           <TileLayer url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}" />
         </LayersControl.BaseLayer>
       </LayersControl>
+
+
+{/* <LayersControl position="topright" ref={layerControlRef}>
+        <LayersControl.Overlay name="Satellite">
+          <TileLayer
+            attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS
+        AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+            url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+        </LayersControl.Overlay>
+        <LayersControl.Overlay name="Grey Canvas">
+          <TileLayer
+            attribution={`${"Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO,"} 
+        ${"NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"}`}
+            url="http://{s}.sm.mapstack.stamen.com/(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/{z}/{x}/{y}.png"
+          />
+        </LayersControl.Overlay>
+      </LayersControl> */}
+      <LeafletVelocity ref={layerControlRef} />
 
       <Button
         type="primary"
@@ -353,12 +373,6 @@ function Map() {
         />
       ) : null}
 
-      {/* {checkbox.includes("Parks") &&
-      <VelocityWind />
-      } */}
-
-{checkbox.includes("Parks") ? <VelocityWind /> : ""}
-
       
     </MapContainer>
     
@@ -366,3 +380,54 @@ function Map() {
 }
 
 export default Map;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
+// import "leaflet/dist/leaflet.css";
+// import LeafletVelocity from "./LeafletVelocity";
+// import { useRef } from "react";
+
+// const position = [-22, 150];
+
+// export default function Map() {
+//   const layerControlRef = useRef();
+
+//   return (
+//     <MapContainer center={position} zoom={5} style={{ height: "100vh" }}>
+//       <TileLayer
+//         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+//         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+//       />
+//       <LayersControl position="topright" ref={layerControlRef}>
+//         <LayersControl.Overlay name="Satellite">
+//           <TileLayer
+//             attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS
+//         AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+//             url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+//           />
+//         </LayersControl.Overlay>
+//         <LayersControl.Overlay name="Grey Canvas">
+//           <TileLayer
+//             attribution={`${"Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO,"} 
+//         ${"NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"}`}
+//             url="http://{s}.sm.mapstack.stamen.com/(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/{z}/{x}/{y}.png"
+//           />
+//         </LayersControl.Overlay>
+//       </LayersControl>
+//       <LeafletVelocity ref={layerControlRef} />
+//     </MapContainer>
+//   );
+// }
+

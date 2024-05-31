@@ -1,72 +1,101 @@
 import "leaflet-velocity/dist/leaflet-velocity.css";
 import "leaflet-velocity/dist/leaflet-velocity.js";
-import { useEffect } from "react";
+import { forwardRef, useEffect } from "react";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
 
-import './style.css';
-
-import WindVelocity from "./data/wind-global.json";
-const LeafletVelocity = () => {
+const LeafletVelocity = forwardRef((props, ref) => {
   const map = useMap();
 
   useEffect(() => {
     if (!map) return;
+
+    let mounted = true;
+    let windGbrLayer;
+    let waterGbrLayer;
     let windGlobalLayer;
 
-    // ------------------------------------------------------------------ for fetching data from object
+    fetch("https://onaci.github.io/leaflet-velocity/wind-global.json")
+      .then((response) => response.json())
+      .then((data) => {
+        if (!mounted) return;
 
-    windGlobalLayer = L.velocityLayer({
-      displayValues: true,
-      displayOptions: {
-        velocityType: "Global Wind",
-        position: "bottomright",
-        emptyString: "No global wind data",
-      },
-      data: WindVelocity,
-      maxVelocity: 0.6,
-      velocityScale: 0.1,
-      colorScale: ["green", "orange", "#CCCCFF"],
-    });
+        windGlobalLayer = L.velocityLayer({
+          displayValues: true,
+          displayOptions: {
+            velocityType: "Global Wind",
+            position: "bottomleft",
+            emptyString: "No global wind data",
+          },
+          data: data,
+          maxVelocity: 0.6,
+          velocityScale: 0.1,
+          colorScale: ["green", "orange", "#CCCCFF"],
+        });
 
-    if (windGlobalLayer) {
-      windGlobalLayer.addTo(map);
-    }
+        if (ref.current && windGlobalLayer)
+          ref.current.addOverlay(windGlobalLayer, "Wind - Global");
+      })
+      .catch((err) => console.log(err));
 
-    // ----------------------------------------------------------------- for fetching from api
-
-    // fetch("https://onaci.github.io/leaflet-velocity/wind-global.json")
+    // fetch("https://onaci.github.io/leaflet-velocity/wind-gbr.json")
     //   .then((response) => response.json())
     //   .then((data) => {
-    //     windGlobalLayer = L.velocityLayer({
+    //     if (!mounted) return;
+
+    //     windGbrLayer = L.velocityLayer({
     //       displayValues: true,
     //       displayOptions: {
-    //         velocityType: "Global Wind",
+    //         velocityType: "GBR Wind",
     //         position: "bottomleft",
-    //         emptyString: "No global wind data",
+    //         emptyString: "No wind data",
+    //         showCardinal: true
     //       },
-    //       data: data,
-    //       maxVelocity: 0.6,
-    //       velocityScale: 0.1,
-    //       colorScale: ["blue", "orange", "lightblue"],
+    //       data,
+    //       maxVelocity: 10
     //     });
 
-    //     if (windGlobalLayer) {
-    //       windGlobalLayer.addTo(map);
-    //     }
+    //     if (ref.current && windGbrLayer)
+    //       ref.current.addOverlay(windGbrLayer, "Wind - Great Barrier Reef");
     //   })
     //   .catch((err) => console.log(err));
 
-    // -------------------------------------------------------------
+    // fetch("https://onaci.github.io/leaflet-velocity/water-gbr.json")
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (!mounted) return;
+
+    //     waterGbrLayer = L.velocityLayer({
+    //       displayValues: true,
+    //       displayOptions: {
+    //         velocityType: "GBR Water",
+    //         position: "bottomleft",
+    //         emptyString: "No water data"
+    //       },
+    //       data: data,
+    //       maxVelocity: 0.6,
+    //       velocityScale: 0.1 // arbitrary default 0.005
+    //     });
+
+    //     if (ref.current && waterGbrLayer)
+    //       ref.current.addOverlay(
+    //         waterGbrLayer,
+    //         "Ocean Current - Great Barrier Reef"
+    //       );
+    //   })
+    //   .catch((err) => console.log(err));
 
     return () => {
-      if (windGlobalLayer) {
-        map.removeLayer(windGlobalLayer);
+      mounted = false;
+      if (ref.current) {
+        ref.current.removeOverlay(windGbrLayer);
+        ref.current.removeOverlay(waterGbrLayer);
+        ref.current.removeOverlay(windGlobalLayer);
       }
     };
   }, [map]);
 
   return null;
-};
+});
 
 export default LeafletVelocity;
