@@ -357,7 +357,7 @@ function Map() {
       <VelocityWind />
       } */}
 
-{checkbox.includes("Parks") ? <VelocityWind /> : ""}
+{checkbox.includes("Wind") ? <VelocityWind /> : ""}
 
       
     </MapContainer>
