@@ -20,7 +20,7 @@ const LeafletVelocity = () => {
       displayValues: true,
       displayOptions: {
         velocityType: "Global Wind",
-        position: "bottomright",
+        position: "bottomleft",
         emptyString: "No global wind data",
       },
       data: WindVelocity,
