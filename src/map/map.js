@@ -12,20 +12,6 @@ import {
 import "leaflet/dist/leaflet.css";
 import { Menu, Button, Modal, Input, message } from "antd";
 
-
-//tailwind.css
-import { PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import {
-  ArrowPathIcon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-} from '@heroicons/react/24/outline'
-
-
-
-
 import "./index.css";
 import { useSelector } from "react-redux";
 
@@ -40,11 +26,16 @@ import storm_drain from "../Geojson-Data/stormwaterDrain.json";
 import manhole from "../Geojson-Data/manHole.json";
 import sewageLine from "../Geojson-Data/sewageLine.json";
 import sewage_chamber from "../Geojson-Data/sewageChamber.json";
+import MarkerData from "./markerData";
 
-import { customIcon, manholeIcon, stormDrainIcon } from "./icons";
+import { customIcon, manholeIcon, stormDrainIcon, markerIcon } from "./icons";
 
 
 import LeafletVelocity from "./LeafletVelocity";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
+
+
 
 
 function Map() {
@@ -134,24 +125,16 @@ function Map() {
         </LayersControl.BaseLayer>
       </LayersControl>
 
-
-{/* <LayersControl position="topright" ref={layerControlRef}>
-        <LayersControl.Overlay name="Satellite">
-          <TileLayer
-            attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS
-        AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-            url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          />
-        </LayersControl.Overlay>
-        <LayersControl.Overlay name="Grey Canvas">
-          <TileLayer
-            attribution={`${"Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO,"} 
-        ${"NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"}`}
-            url="http://{s}.sm.mapstack.stamen.com/(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/{z}/{x}/{y}.png"
-          />
-        </LayersControl.Overlay>
-      </LayersControl> */}
       <LeafletVelocity ref={layerControlRef} />
+
+      <Marker
+          icon={markerIcon}
+          position={[19.043858425131205, 72.82305828492963]}
+        >
+          <Popup>
+          <MarkerData />
+          </Popup>
+        </Marker>
 
       <Button
         type="primary"
@@ -318,26 +301,6 @@ function Map() {
         />
       ) : null}
 
-      {/* {checkbox.includes("Road")
-        ? road[0].features.map((feature, index) => (
-            <Polyline
-              key={index}
-              positions={feature.geometry.coordinates.map((coord) => [
-                coord[1],
-                coord[0],
-              ])}
-              color="black"
-            >
-              <Popup>
-                <p>Road Name: {feature.properties.name || "Unknown"}</p>
-                <p>
-                  Additional Info:{" "}
-                  {feature.properties.info || "No additional info"}
-                </p>
-              </Popup>
-            </Polyline>
-          ))
-        : null} */}
       
       {checkbox.includes("Road")
         ? road.features.map((feature, index) => (

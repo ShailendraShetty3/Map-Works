@@ -2,6 +2,8 @@ import L from 'leaflet';
 import sewageChamberIcon from "../Images/sewageChamber.png";
 import IconManhole from "../Images/manhole.png";
 import IconstormDrain from "../Images/stormWaterDrain.png";
+import MarkerIcon from "../Images/map.svg"
+import Sunrise from "../Images/sunrise.png"
 
 export const customIcon = new L.Icon({
     iconUrl: sewageChamberIcon,
@@ -24,4 +26,23 @@ export const stormDrainIcon = new L.Icon({
     popupAnchor: [0, 0],
   });
   
+  
+
+  export const markerIcon = L.icon({
+    iconUrl: MarkerIcon,
+    iconSize: [30, 45],
+    iconAnchor: [15, 54],
+  });
+
+
+
+
+//marker icons
+
+export const sunriseIcon = L.icon({
+  iconUrl: Sunrise,
+  iconSize: [20, 25],
+  iconAnchor: [15, 14],
+});
+
   
