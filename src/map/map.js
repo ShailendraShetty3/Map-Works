@@ -8,6 +8,7 @@ import {
   ZoomControl,
   Marker,
   Popup,
+  useMapEvent
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Menu, Button, Modal, Input, message } from "antd";
@@ -44,10 +45,10 @@ function Map() {
   const checkbox = useSelector((state) => state.checkbox.CheckboxValue);
   ///
   const [zoomLevel, setZoomLevel] = useState(15);
-  const [markerPosition, setMarkerPosition] = useState([
-    19.048980241105, 72.82506531582413,
-  ]);
+  const [position, setPosition] = useState([19.048980241105, 72.82506531582413,]);
+  const [markerPosition, setMarkerPosition] = useState([19.048980241105, 72.82506531582413]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [disableMapInteraction, setDisableMapInteraction] = useState(false);
 
   let mapOptions = {
     zoom: 15,
@@ -58,6 +59,15 @@ function Map() {
 
   const [selectedPolyline, setSelectedPolyline] = useState(null);
   const [popupPosition, setPopupPosition] = useState(null);
+
+  const MapClickHandler = () => {
+    useMapEvent('click', (event) => {
+      if (!disableMapInteraction) {
+        setMarkerPosition([event.latlng.lat, event.latlng.lng]);
+      }
+    });
+    return null;
+  };
 
   const onEachFeature = (feature, layer) => {
     if (feature.properties && feature.properties.name) {
@@ -99,8 +109,7 @@ function Map() {
 
   return (
     <MapContainer
-      // center={[23.825292, 90.620816]} //bangladesh
-      center={markerPosition}
+      center={position}
       zoom={15}
       // zoom={zoomLevel}
       // maxZoom={20}
@@ -127,9 +136,11 @@ function Map() {
 
       <LeafletVelocity ref={layerControlRef} />
 
+      <MapClickHandler />
+
       <Marker
           icon={markerIcon}
-          position={[19.043858425131205, 72.82305828492963]}
+          position={markerPosition}
         >
           <Popup>
           <MarkerData />

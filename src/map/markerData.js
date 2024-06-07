@@ -15,7 +15,6 @@ import Sunset from "../Images/sunset.png";
 import { Button, Col, Row, Space } from "antd";
 
 export default function MarkerData() {
-
   return (
     <div>
       <div
@@ -90,7 +89,7 @@ export default function MarkerData() {
           </div>
         </Col>
         <Col span={12} style={{ display: "flex" }}>
-        <img src={Sunset} alt="Sunrise Icon" />
+          <img src={Sunset} alt="Sunrise Icon" />
           <div
             style={{
               display: "flex",
@@ -106,7 +105,7 @@ export default function MarkerData() {
       <center>
         <a
           style={{ cursor: "pointer" }}
-        //   onClick={() => dispatch(setClientForecast(true))}
+          //   onClick={() => dispatch(setClientForecast(true))}
         >
           View Weather Forecast
         </a>
