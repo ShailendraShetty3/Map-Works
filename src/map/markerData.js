@@ -12,7 +12,16 @@ import { ReactComponent as MarkerWind } from "../Images/map.svg";
 import Sunrise from "../Images/sunrise.png";
 import Sunset from "../Images/sunset.png";
 
+import Wind from "../Images/wind.png";
+import Cloud from "../Images/cloud.png";
+import Pressure from "../Images/pressure.png";
+import Rain from "../Images/rain.png";
+import Humidity from "../Images/humidity.png";
+import iconPoint from "../Images/map.svg";
+
+
 import { Button, Col, Row, Space } from "antd";
+
 
 export default function MarkerData() {
   return (
@@ -22,10 +31,12 @@ export default function MarkerData() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          
         }}
       >
         <div style={{ display: "flex" }}>
           {/* <MarkerIcon /> */}
+          <img src={iconPoint} alt="Marker Icon" style={{width:"40px", height:"40px"}} />
           <div
             style={{
               display: "flex",
@@ -50,26 +61,31 @@ export default function MarkerData() {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Space direction="vertical" align="center">
           {/* <MarkerWind /> */}
+          <img src={Wind} alt="Wind Icon" style={{width:"25px", height:"25px"}} />
           <h5>16.75 kmph</h5>
           <h5>Wind</h5>
         </Space>
         <Space direction="vertical" align="center">
           {/* <MarkerCloud /> */}
+          <img src={Cloud} alt="Cloud Icon" style={{width:"25px", height:"25px"}} />
           <h5>98%</h5>
           <h5>Clouds</h5>
         </Space>
         <Space direction="vertical" align="center">
           {/* <MarkerPressureIcon /> */}
+          <img src={Pressure} alt="Pressure Icon" style={{width:"25px", height:"25px"}} />
           <h5>1006 hPa</h5>
           <h5>Pressure</h5>
         </Space>
         <Space direction="vertical" align="center">
           {/* <MarkerRainIcon /> */}
+          <img src={Rain} alt="Rain Icon" style={{width:"25px", height:"25px"}} />
           <h5>0.1 mm</h5>
           <h5>Rain</h5>
         </Space>
         <Space direction="vertical" align="center">
           {/* <MarkerHumidity /> */}
+          <img src={Humidity} alt="Humidity Icon" style={{width:"25px", height:"25px"}} />
           <h5>60%</h5>
           <h5>Humidity</h5>
         </Space>
